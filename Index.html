@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passage | Curated Luxury Travel</title>
+  <meta name="description" content="Personalised luxury travel briefs for discerning travellers. Join the waitlist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --bg:           #07090f;
+  --bg-card:      #0c0f1c;
+  --border:       #1a1f32;
+  --border-mid:   #242840;
+  --accent:       #c8aa78;
+  --accent-dim:   rgba(200,170,120,0.18);
+  --text:         #ede8dd;
+  --text-mid:     #8a8578;
+  --text-dim:     #4a4d5a;
+  --avoid:        rgba(160,60,40,0.08);
+  --avoid-border: rgba(180,80,60,0.3);
+}
+
+html, body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -30vh; left: 50%; transform: translateX(-50%);
+  width: 100vw; height: 100vh;
+  background: radial-gradient(ellipse at 50% 0%, rgba(24,36,96,0.4) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+.page {
+  position: relative; z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  padding: 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--text);
+}
+
+.nav-right {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.nav-tag {
+  font-size: 8px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+.nav-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--border-mid);
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+  padding: 96px 0 80px;
+  flex: 1;
+}
+
+.eyebrow {
+  font-size: 8px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4.5vw, 58px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.hero-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-mid);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 44px;
+  letter-spacing: 0.02em;
+}
+
+/* FORM */
+.form-wrap {
+  display: flex;
+  max-width: 420px;
+  margin-bottom: 14px;
+}
+
+.email-input {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-mid);
+  border-right: none;
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.06em;
+  padding: 14px 20px;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+.email-input::placeholder { color: var(--text-dim); }
+.email-input:focus { border-color: var(--accent-dim); }
+
+.form-btn {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 14px 24px; cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.form-btn:hover { opacity: 0.88; }
+
+.form-note {
+  font-size: 9px; letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.success {
+  display: none; flex-direction: column; gap: 6px;
+}
+
+.success-mark {
+  font-size: 10px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--accent);
+}
+
+.success-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 15px; color: var(--text-mid);
+}
+
+/* CARD */
+.card-preview {
+  background: var(--bg-card);
+  border: 1px solid var(--border-mid);
+  padding: 32px 36px 28px;
+  position: relative;
+}
+
+.card-preview::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.card-label {
+  font-size: 8px; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.card-dest {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card-dest-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--text); letter-spacing: 0.03em;
+}
+
+.card-dest-region {
+  font-size: 10px; color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 20px;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.card-row.avoid {
+  background: var(--avoid);
+  border-left: 2px solid var(--avoid-border);
+  border-bottom: none;
+  padding: 10px 12px;
+  margin-top: 4px;
+}
+
+.card-row-label {
+  font-size: 8px; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--accent);
+  padding-top: 2px;
+}
+
+.card-row.avoid .card-row-label {
+  color: rgba(200,100,80,0.7);
+}
+
+.card-row-val {
+  font-size: 12px; color: var(--text-mid);
+  line-height: 1.5; letter-spacing: 0.02em;
+}
+
+.card-footer {
+  display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap;
+}
+
+.card-tag {
+  font-size: 8px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  padding: 4px 10px;
+}
+
+/* PILLARS */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 36px 32px;
+  border-right: 1px solid var(--border);
+}
+
+.pillar:last-child { border-right: none; }
+
+.pillar-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 300;
+  color: var(--accent); opacity: 0.7;
+  flex-shrink: 0; padding-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+.pillar-divider {
+  width: 1px; background: var(--border-mid);
+  align-self: stretch; flex-shrink: 0;
+}
+
+.pillar-title {
+  font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text);
+  margin-bottom: 10px;
+}
+
+.pillar-body {
+  font-size: 12px; color: var(--text-dim);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* FOOTER */
+footer {
+  padding: 24px 0 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.footer-word {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+.footer-copy {
+  font-size: 9px; letter-spacing: 0.12em;
+  color: var(--text-dim);
+}
+
+/* RESPONSIVE */
+@media(max-width: 800px) {
+  .page { padding: 0 24px; }
+  .hero { grid-template-columns: 1fr; gap: 48px; padding: 64px 0 48px; }
+  .hero-right { order: -1; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 0; }
+  .pillar:last-child { border-bottom: none; }
+}
+
+@media(max-width: 480px) {
+  .form-wrap { flex-direction: column; }
+  .email-input { border-right: 1px solid var(--border-mid); border-bottom: none; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+```
+
+  </style>
+</head>
+<body>
+  <div class="page">
+
+```
+<nav>
+  <span class="nav-wordmark">Passage</span>
+  <div class="nav-right">
+    <span class="nav-tag">Est. 2026</span>
+    <span class="nav-dot"></span>
+    <span class="nav-tag">By invitation</span>
+  </div>
+</nav>
+
+<main class="hero">
+
+  <div class="hero-left">
+    <p class="eyebrow">Curated travel intelligence</p>
+    <h1 class="hero-title">
+      The world's finest<br>destinations,<br><em>without the research</em>
+    </h1>
+    <p class="hero-sub">
+      Passage turns years of firsthand travel experience into a personalised trip brief - hotels, restaurants, day-by-day itineraries and honest insider warnings - delivered in minutes.
+    </p>
+    <div class="form-wrap" id="formWrap">
+      <input class="email-input" type="email" id="emailInput" placeholder="Your email address" />
+      <button class="form-btn" onclick="handleSubmit()">Join waitlist</button>
+    </div>
+    <p class="form-note" id="formNote">Early access only &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
+    <div class="success" id="successMsg">
+      <p class="success-mark">✦ &nbsp; You're on the list</p>
+      <p class="success-sub">We'll be in touch when Passage opens.</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="card-preview">
+      <p class="card-label">Sample brief</p>
+      <div class="card-dest">
+        <span class="card-dest-name">Mustique</span>
+        <span class="card-dest-region">St. Vincent &amp; the Grenadines</span>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-row">
+        <span class="card-row-label">Stay</span>
+        <span class="card-row-val">The Cotton House</span>
+      </div>
+      <div class="card-row">
+        <span class="card-row-label">Dine</span>
+        <span class="card-row-val">Basil's Bar, Thursday night</span>
+      </div>
+      <div class="card-row">
+        <span class="card-row-label">Do</span>
+        <span class="card-row-val">Private yacht to Tobago Cays</span>
+      </div>
+      <div class="card-row avoid">
+        <span class="card-row-label">Avoid</span>
+        <span class="card-row-val">Peak season villa rental without advance booking</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-tag">Ultra-luxury</span>
+        <span class="card-tag">Caribbean</span>
+        <span class="card-tag">Couple</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="pillars">
+  <div class="pillar">
+    <span class="pillar-num">01</span>
+    <span class="pillar-divider"></span>
+    <div>
+      <p class="pillar-title">Firsthand only</p>
+      <p class="pillar-body">Every recommendation is drawn from personal experience - never aggregated reviews or sponsored content</p>
+    </div>
+  </div>
+  <div class="pillar">
+    <span class="pillar-num">02</span>
+    <span class="pillar-divider"></span>
+    <div>
+      <p class="pillar-title">Brutally honest</p>
+      <p class="pillar-body">We tell you what to avoid with the same clarity as what to seek - the advice a trusted friend would give</p>
+    </div>
+  </div>
+  <div class="pillar">
+    <span class="pillar-num">03</span>
+    <span class="pillar-divider"></span>
+    <div>
+      <p class="pillar-title">Zero research</p>
+      <p class="pillar-body">Answer five questions. Receive a complete, tailored brief. Hours of planning distilled into minutes</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-word">Passage</span>
+  <span class="footer-copy">© 2026 passagetravelconcierge.com</span>
+</footer>
+```
+
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const email = document.getElementById('emailInput').value.trim();
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(email)) {
+        document.getElementById('emailInput').style.borderColor = 'rgba(200,80,60,0.5)';
+        return;
+      }
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('formNote').style.display = 'none';
+      const s = document.getElementById('successMsg');
+      s.style.display = 'flex';
+    }
+
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+
+</body>
+</html>
